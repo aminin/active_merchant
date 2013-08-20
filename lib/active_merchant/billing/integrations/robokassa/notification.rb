@@ -17,9 +17,15 @@ module ActiveMerchant #:nodoc:
             BigDecimal.new(gross)
           end
 
+          def currency
+            'RUR'
+          end
+
           def item_id
             params['InvId']
           end
+
+          alias transaction_id item_id
 
           def security_key
             params[ActiveMerchant::Billing::Integrations::Robokassa.signature_parameter_name].to_s.downcase
@@ -34,7 +40,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def secret
-            @options[:secret]
+            @options[:secret2]
           end
 
           def main_params
